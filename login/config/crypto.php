@@ -46,4 +46,25 @@ function descifrarAES256 ( $cadenaBase64 ) {
     $textoCifrado = substr($datosBinarios,$ivLength );
     return openssl_decrypt ($textoCifrado,$metodo , CLAVE_AES_256 , 0, $iv);
 };
+
+/**
+ * Cifra un mensaje con la clave pública RSA -2048
+ */
+
+ function cifrarRSA ($mensaje) {
+ $clavePublica = file_get_contents(__DIR__ . '/publica.key');
+ openssl_public_encrypt ($mensaje , $cifrado , $clavePublica );
+ return base64_encode($cifrado);
+ }
+
+ /**
+ * Descifra un mensaje con la clave privada RSA -2048
+ */
+ function descifrarRSA ($mensajeCifrado) {
+    $clavePrivada = file_get_contents(__DIR__ . '/privada.key');
+    openssl_private_decrypt (base64_decode($mensajeCifrado),$descifrado,$clavePrivada );
+    return $descifrado;
+ }
+
+
 ?>
