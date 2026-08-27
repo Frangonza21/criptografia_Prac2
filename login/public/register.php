@@ -1,7 +1,8 @@
 <?php
 session_start();
-require_once '../config/database.php';
-
+// Importación del módulo de cifrado
+ require_once '../config/database.php';
+ require_once '../config/crypto.php';
 $error = '';
 $success = '';
 
@@ -10,6 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    $telefono = trim($_POST['telefono'] ?? '');
+    $telefono_cifrado = !empty( $telefono ) ? cifrarAES256 ( $telefono ) : null;
+ 
+
+ 
+ 
+
+
 
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
         $error = 'Todos los campos son requeridos';
@@ -30,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // El hash es irreversible, protegiendo la contraseña incluso si la BD es robada
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            if ($stmt->execute([$username, $email, $hashed_password])) {
+            $stmt = $pdo ->prepare("INSERT INTO users (username,email,password,telefono_cifrado) VALUES (?, ?, ?, ?)");
+            if ($stmt ->execute ([ $username , $email , $hashed_password , $telefono_cifrado ])) {
                 $success = '¡Registro exitoso!';
             } else {
                 $error = 'Registro fallido. Por favor, intentelo nuevamente.';
@@ -75,6 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="confirm_password">Confirme su Password</label>
                     <input type="password" id="confirm_password" name="confirm_password" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="telefono">Telefono (opcional)</label>
+                    <input type="text" id="telefono" name="telefono" placeholder ="Ej: 555 -1234">
+                 </div>
                 <button type="submit" class="btn btn-primary">Registrese</button>
             </form>
             <p class="link">¿Ya tienes cuenta? <a href="login.php">Ingresa</a></p>
