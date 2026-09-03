@@ -1,7 +1,10 @@
 # Integrantes
-Francisco Gonzalez
-Tomas Garula
-Santiago Rosas
+| Nombre                 |
+| ---------------------- |
+| **Santiago Rosas**     |
+| **Sebastien Alizo**    |
+| **Francisco Gonzalez** |
+| **Tomas Garula**       |
 
 # Sistema de Login con Criptografía Aplicada
 
