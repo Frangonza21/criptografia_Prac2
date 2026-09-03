@@ -36,4 +36,4 @@ style.css
 - PHP 7.4+ / MySQL
 - OpenSSL (Extensión criptográfica)
 - HTML5 / CSS3
-- Git / GitHub
+- Git / GitHub.
