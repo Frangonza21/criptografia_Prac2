@@ -1,6 +1,16 @@
-<?php
-session_start();
 
+<?php
+ /**
+ * ¿Cómo funciona el flujo HMAC?
+ * 1. Servidor y cliente comparten una clave secreta.
+ * 2. El servidor genera la firma: firma = HMAC(payload , clave_secreta).
+ * 3. El cliente transmite el payload junto con la firma.
+ * 4. El servidor recalcula el HMAC del payload recibido y compara usando hash_equals().
+ * 5. Si coinciden , se garantiza que los datos son auténticos y no han sido modificados.
+ */
+
+
+session_start();
 
 require_once '../config/database.php';
  require_once '../config/crypto.php';
@@ -81,6 +91,14 @@ if (isset($_GET['logout'])) {
                         <li><strong> Algoritmo:</strong> RSA-2048 </li>
                         </ul>
                         </div>
+                        <!-- Enlace de demostración HMAC dentro del contenedor principal -->
+                        <div style="margin-top: 20px; text-align: center;">
+                        <a href="validar_integridad.php" target="_blank" class="btn btn-primary" style="width: auto; padding: 10px 20px;">
+                        Probar Validación HMAC
+                        </a>
+                        </div>
+
+
         </div>
     </div>
 </body>
