@@ -1,1 +1,19 @@
-privada.key
+# Claves privadas - ¡NUNCA SUBIR A REPOSITORIOS PÚBLICOS!
+login/config/privada.key
+login/config/*.key
+
+# Archivos de configuración de entornos de desarrollo (IDEs)
+.vscode/
+.idea/
+
+# Archivos temporales y de sistema operativo
+*.tmp
+*.log
+*.cache
+
+Thumbs.db
+.DS_Store
+
+# Archivos de bases de datos locales
+*.sqlite
+*.db
