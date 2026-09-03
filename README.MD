@@ -1,3 +1,8 @@
+# Integrantes
+Francisco Gonzalez
+Tomas Garula
+Santiago Rosas
+
 # Sistema de Login con Criptografía Aplicada
 
 ## Descripción
