@@ -25,14 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // password_verify() compara la contraseña ingresada con el hash almacenado
         // Es seguro contra ataques de timing
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['login_time'] = date('Y-m-d H:i:s');
-            
-            header('Location: dashboard.php');
-            exit;
-        } else {
+        if ($user && password_verify ($password , $user['password'])) {
+ $_SESSION ['user_id'] = $user['id'];
+ $_SESSION ['username'] = $user['username'];
+ $_SESSION ['login_time'] = date('Y-m-d H:i:s');
+ header('Location: dashboard.php');
+ exit;
+ } else {
             $error = 'Credenciales inválidas';
         }
     }
